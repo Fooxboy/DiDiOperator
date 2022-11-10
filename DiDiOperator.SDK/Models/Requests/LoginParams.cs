@@ -2,12 +2,12 @@
 
 namespace DiDiOperator.SDK.Models.Requests
 {
-    public class LoginParams
+    internal class LoginParams
     {
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        internal string Title { get; set; }
 
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        internal string Password { get; set; }
     }
 }
