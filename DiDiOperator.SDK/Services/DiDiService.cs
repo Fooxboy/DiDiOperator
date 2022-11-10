@@ -31,7 +31,9 @@ namespace DiDiOperator.SDK.Services
         /// <param name="client">хттп клиент</param>
         public DiDiService(HttpClient client)
         {
-            client.BaseAddress = new Uri("https://lk.di-di.ru/api");
+            client.BaseAddress = new Uri("https://lk.di-di.ru/api/");
+
+            _httpClient = client;
         }
 
         /// <summary>
@@ -50,7 +52,11 @@ namespace DiDiOperator.SDK.Services
                 Password = password
             };
 
-            var httpResponse = await _httpClient.PostAsJsonAsync<LoginParams>("login", loginParams);
+            var body = JsonSerializer.Serialize(loginParams);
+
+            var data = new StringContent(body, Encoding.UTF8, "application/json");
+
+            var httpResponse = await _httpClient.PostAsync("login", data);
 
             httpResponse.EnsureSuccessStatusCode();
 

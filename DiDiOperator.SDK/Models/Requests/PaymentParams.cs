@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DiDiOperator.SDK.Models.Requests
 {
-    internal class PaymentParams
+    public class PaymentParams
     {
         /// <summary>
         /// Id модуля пополнения

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="DiDiOperator.Client.Views.LoginPage"
+             xmlns:androidWidget="clr-namespace:Android.Widget;assembly=Mono.Android;targetPlatform=Android"
+             Title="LoginPage">
+
+    <Grid>
+        <VerticalStackLayout BackgroundColor="#F43645">
+            <HorizontalStackLayout Margin="0, 50,0,0" HorizontalOptions="CenterAndExpand">
+                <Image MaximumHeightRequest="70" Source="didi.png"/>
+                <Label VerticalOptions="Center" Margin="15,0,0,0" FontAttributes="Bold"  FontSize="22" TextColor="White" Text="Вход в Личный кабинет"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center" MaximumWidthRequest="450">
+            <Grid x:Name="LoginGrid" HeightRequest="40" MaximumWidthRequest="300" Margin="20,0,20,0">
+                <RoundRectangle Fill="White" CornerRadius="999"/>
+                <Entry Margin="10,0,10,0" Text="{x:Binding Login}" TextColor="Black" IsSpellCheckEnabled="False" Placeholder="Ваш номер договора"/>
+            </Grid>
+
+            <Grid x:Name="PasswordGrid" HeightRequest="40"  MaximumWidthRequest="300"  Margin="20,20,20,0">
+                <RoundRectangle Fill="White" CornerRadius="999"/>
+                <Entry IsPassword="True" Text="{x:Binding Password}" VerticalTextAlignment="Center" Margin="10,0,10,0" TextColor="Black"  IsSpellCheckEnabled="False" Placeholder="Ваш пароль"/>
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <Button BackgroundColor="White" IsEnabled="{Binding ButtonEnable}" Command="{x:Binding AuthCommand}" TextColor="Black" MaximumHeightRequest="40" MaximumWidthRequest="400" VerticalOptions="End" Margin="20,0,20,50" Text="Войти"/>
+    </Grid>
+    
+</ContentPage>
