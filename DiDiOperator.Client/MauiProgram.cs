@@ -54,6 +54,8 @@ namespace DiDiOperator.Client
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<HomePage>();
             builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<TariffsPage>();
+            builder.Services.AddTransient<TariffsViewModel>();
 
             builder.Services.AddSingleton<NavigationService>();
             builder.Services.AddHttpClient();

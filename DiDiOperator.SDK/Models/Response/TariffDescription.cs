@@ -16,7 +16,7 @@ namespace DiDiOperator.SDK.Models.Response
         /// <summary>
         /// Заголовок тарифа
         /// </summary>
-        [JsonPropertyName("id")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
     }
 }
