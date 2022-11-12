@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using DiDiOperator.Client.Models;
+using DiDiOperator.Client.Services;
+using DiDiOperator.Client.Views;
 using DiDiOperator.SDK.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,6 +11,7 @@ namespace DiDiOperator.Client.ViewModels
     public class HomeViewModel : ViewModelBase
     {
         private readonly DiDiService diDiService;
+        private readonly NavigationService navigationService;
 
         public ICommand LogoutCommand { get; set; }
 
@@ -30,9 +33,10 @@ namespace DiDiOperator.Client.ViewModels
 
         public ObservableCollection<CurrentTariff> CurrentTariffs { get; set; }
 
-        public HomeViewModel(DiDiService diDiService)
+        public HomeViewModel(DiDiService diDiService, NavigationService navigationService)
         {
             this.diDiService = diDiService;
+            this.navigationService = navigationService;
             this.PayoutCommand = new AsyncRelayCommand(Payout);
 
             this.CurrentTariffs = new ObservableCollection<CurrentTariff>();
@@ -89,7 +93,7 @@ namespace DiDiOperator.Client.ViewModels
 
         private async Task Payout()
         {
-
+            await navigationService.NavigateInTab<PayoutPage>();
         }
     }
 }

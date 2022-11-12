@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiDiOperator.Client.Views.PayoutPage"
+             Background="#ECECEC"
+             Title="Пополнение баланса">
+    <Grid>
+        <Label Margin="10, 30, 0, 0" FontFamily="InterBold" FontSize="28"  Text="Пополнение баланса"/>
+
+        <Grid>
+            <Grid x:Name="LoginGrid" HeightRequest="40" Margin="20,0,20,0">
+                <RoundRectangle Fill="White" CornerRadius="999"/>
+                <Entry Margin="10,0,10,0" Text="{x:Binding Amount}" Keyboard="Numeric" TextColor="Black" IsSpellCheckEnabled="False" Placeholder="Сумма пополнения (от 10р)"/>
+            </Grid>
+
+            <Button Margin="10" HeightRequest="40" VerticalOptions="End" Command="{x:Binding PayoutCommand}" Text="Пополнить"/>
+        </Grid>
+
+        <WebView x:Name="WebViewMain" IsVisible="{Binding VisibleWebView}"  Source="{Binding Url}" Navigated="WebView_Navigated"/>
+    </Grid>
+</ContentPage>

@@ -7,6 +7,8 @@ namespace DiDiOperator.Client.Services
     {
         readonly IServiceProvider _services;
 
+        public event Action<Page> NavigateInTabEvent;
+
         protected INavigation Navigation
         {
             get
@@ -33,6 +35,17 @@ namespace DiDiOperator.Client.Services
                 return Navigation.PopAsync();
 
             throw new InvalidOperationException("No pages to navigate back to!");
+        }
+
+
+        public async Task NavigateInTab<T>(object? parameter = null) where T : Page
+        {
+            var toPage = ResolvePage<T>();
+
+            if(toPage is not null)
+            {
+                NavigateInTabEvent?.Invoke(toPage);
+            }
         }
 
         public async Task NavigateToPage<T>(object? parameter = null) where T : Page
