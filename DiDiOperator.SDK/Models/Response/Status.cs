@@ -29,13 +29,13 @@ namespace DiDiOperator.SDK.Models.Response
         /// Начало статуса
         /// </summary>
         [JsonPropertyName("dateFrom")]
-        public DateTime DateFrom { get; set; }
+        public string DateFrom { get; set; }
 
         /// <summary>
         /// Окончание статуса
         /// </summary>
         [JsonPropertyName("dateTo")]
-        public DateTime DateTo { get; set; }
+        public string DateTo { get; set; }
 
         /// <summary>
         /// Комментарий к статусу

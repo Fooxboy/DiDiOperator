@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using DiDiOperator.Client.Models;
 using DiDiOperator.SDK.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -27,15 +28,14 @@ namespace DiDiOperator.Client.ViewModels
 
         public bool IsLoading { get; set; }
 
-        public ObservableCollection<string> CurrentTariffs { get; set; }
-
+        public ObservableCollection<CurrentTariff> CurrentTariffs { get; set; }
 
         public HomeViewModel(DiDiService diDiService)
         {
             this.diDiService = diDiService;
             this.PayoutCommand = new AsyncRelayCommand(Payout);
 
-            this.CurrentTariffs = new ObservableCollection<string>();
+            this.CurrentTariffs = new ObservableCollection<CurrentTariff>();
         }
 
         public async Task LoadData()
@@ -59,9 +59,28 @@ namespace DiDiOperator.Client.ViewModels
 
             var tariffs = await this.diDiService.GetCurrentTariffsAsync();
 
+            var status = await this.diDiService.GetStatusAsync();
+
+
             foreach (var tariff in tariffs)
             {
-                
+                var currentTariff = new CurrentTariff();
+
+                currentTariff.Name = tariff.WebTitle;
+
+                try
+                {
+                    currentTariff.Status = "Активен";
+                    currentTariff.Price = tariff.ConfigPreferences.Map.Price;
+                    currentTariff.Speed = tariff.ConfigPreferences.Map.Speed;
+
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+                CurrentTariffs.Add(currentTariff);
             }
              
             IsLoading = false;

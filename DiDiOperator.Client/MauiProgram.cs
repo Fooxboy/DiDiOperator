@@ -1,10 +1,13 @@
-﻿using DiDiOperator.Client.Controls;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
+using DiDiOperator.Client.Controls;
 using DiDiOperator.Client.Services;
 using DiDiOperator.Client.ViewModels;
 using DiDiOperator.Client.Views;
 using DiDiOperator.SDK.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Net;
 
 namespace DiDiOperator.Client
 {
@@ -13,9 +16,15 @@ namespace DiDiOperator.Client
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+#if ANDROID && DEBUG
+            DiDiOperator.Client.Platforms.Android.DangerousAndroidMessageHandlerEmitter.Register();
+            DiDiOperator.Client.Platforms.Android.DangerousTrustProvider.Register();
+#endif
+
 
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureMauiHandlers(handlers =>
                 {
                     handlers.AddHandler(typeof(Entry), typeof(TextBlockHandler));
@@ -25,6 +34,17 @@ namespace DiDiOperator.Client
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+
+                    fonts.AddFont("Inter-Black.ttf", "InterBlack");
+                    fonts.AddFont("Inter-Bold.ttf", "InterBold");
+                    fonts.AddFont("Inter-ExtraBold.ttf", "InterExtraBold");
+                    fonts.AddFont("Inter-ExtraLight.ttf", "InterExtraLight");
+                    fonts.AddFont("Inter-Light.ttf", "InterLight");
+                    fonts.AddFont("Inter-Medium.ttf", "InterMedium");
+                    fonts.AddFont("Inter-Regular.ttf", "InterRegular");
+                    fonts.AddFont("Inter-SemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("Inter-Thin.ttf", "InterThin");
+
                 });
 
             builder.Services.AddTransient<TabsPage>();

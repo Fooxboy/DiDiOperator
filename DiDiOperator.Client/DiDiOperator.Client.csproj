@@ -31,6 +31,10 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<AndroidHttpClientHandlerType>DangerousAndroidMessageHandler, DangerousAndroidMessageHandler</AndroidHttpClientHandlerType>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 
@@ -49,10 +53,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\Inter-Black.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Bold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-ExtraLight.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Light.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Medium.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Inter-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Inter-Thin.ttf" />
 	  <None Remove="Resources\Images\didi.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="2.0.0" />
+	  <PackageReference Include="CommunityToolkit.Maui.Core" Version="2.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 	  <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.0" />

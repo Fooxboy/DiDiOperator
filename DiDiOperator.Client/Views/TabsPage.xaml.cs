@@ -8,6 +8,8 @@ public partial class TabsPage : TabbedPage
 	{
 		InitializeComponent();
 
-		this.Children.Add(homePage);
+        NavigationPage.SetHasNavigationBar(homePage, false);
+
+        this.Children.Add(homePage);
 	}
 }

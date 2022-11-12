@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiDiOperator.Client.Views.TabsPage"
              xmlns:views="clr-namespace:DiDiOperator.Client.Views"
-            BackgroundColor="#F43645"
+             BarBackgroundColor="#ECECEC"
+            Shell.NavBarIsVisible="False"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+            windows:TabbedPage.HeaderIconsEnabled="False"
+             SelectedTabColor="White"
+            BarTextColor="Black"
+             UnselectedTabColor="#ECECEC"
              Title="TabsPage">
 
 </TabbedPage>

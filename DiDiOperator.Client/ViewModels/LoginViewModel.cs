@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.Input;
 using DiDiOperator.Client.Services;
 using DiDiOperator.Client.Views;
 using DiDiOperator.SDK.Services;
@@ -64,6 +66,12 @@ namespace DiDiOperator.Client.ViewModels
 
             }catch(Exception ex)
             {
+                string text = $"Ошибка: {ex.Message}";
+                ToastDuration duration = ToastDuration.Short;
+                double fontSize = 14;
+
+                var toast = Toast.Make(text, duration, fontSize);
+
                 Debugger.Break();
             }
             
