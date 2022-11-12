@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using DiDiOperator.Client.Services;
+using DiDiOperator.Client.Views;
 using DiDiOperator.SDK.Services;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -15,10 +17,12 @@ namespace DiDiOperator.Client.ViewModels
         public bool ButtonEnable { get; set; }
 
         private readonly DiDiService diDiService;
+        private readonly NavigationService navigationService;
 
-        public LoginViewModel(DiDiService diDiService)
+        public LoginViewModel(DiDiService diDiService, NavigationService navigationService)
         {
             this.diDiService = diDiService;
+            this.navigationService = navigationService;
 
             AuthCommand = new AsyncRelayCommand(Auth);
             this.ButtonEnable = true;
@@ -54,6 +58,10 @@ namespace DiDiOperator.Client.ViewModels
                 }
 
                 Preferences.Set("token", token.Token);
+
+                await navigationService.NavigateToPage<TabsPage>();
+           
+
             }catch(Exception ex)
             {
                 Debugger.Break();

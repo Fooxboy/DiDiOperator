@@ -19,6 +19,7 @@ namespace DiDiOperator.Client
         {
             if (Preferences.ContainsKey("token"))
             {
+              
                 return;
             }
             await _navigationService.NavigateToPage<LoginPage>();

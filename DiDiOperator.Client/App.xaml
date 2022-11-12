@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DiDiOperator.Client"
+             xmlns:converters="clr-namespace:DiDiOperator.Client.Converters"
              x:Class="DiDiOperator.Client.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,8 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:InversionBoolConverter x:Key="InversionBoolConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

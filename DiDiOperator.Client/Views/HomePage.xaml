@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiDiOperator.Client.Views.HomePage"
+             Background="#E3E3E3"
+             Title="Главная">
+    <Grid>
+
+
+        <RoundRectangle CornerRadius="20" Margin="0,190,0,0" Fill="White"/>
+
+        <ActivityIndicator Color="#CE2B38" HeightRequest="60" WidthRequest="60" IsRunning="{x:Binding IsLoading}" />
+
+
+        <StackLayout IsVisible="{x:Binding IsLoading, Converter={StaticResource InversionBoolConverter}}">
+
+            <Grid>
+                <StackLayout Margin="20,20,0,0">
+                    <Label FontSize="25" FontFamily="OpenSansSemibold" FontAttributes="Bold" Text="{x:Binding AbonentName, Mode=TwoWay}"/>
+                    <HorizontalStackLayout>
+                        <Label TextColor="#3D3D3D" Text="Договор: "/>
+                        <Label TextColor="#3D3D3D" Margin="5,0,0,0" Text="{x:Binding ContractName}"/>
+                    </HorizontalStackLayout>
+
+                    <Grid>
+                        <RoundRectangle Margin="-20,10,0,0" CornerRadius="20" Fill="White"/>
+
+                        <StackLayout>
+                            <Label Text="Баланс" Margin="0, 20,0,0" FontSize="18" FontFamily="OpenSansSemibold"/>
+
+                            <HorizontalStackLayout Margin="0,0,0,10">
+                                <Label TextColor="Green" FontSize="35" FontFamily="OpenSansSemibold" FontAttributes="Bold" Text="{x:Binding BalanceAmount}"/>
+                                <Label TextColor="Green" FontSize="35" Margin="5,0,0,0" Text="₽"/>
+                            </HorizontalStackLayout>
+
+
+                        </StackLayout>
+
+                        <Button Command="{x:Binding PayoutCommand}" Focused="Button_Focused" Unfocused="Button_Unfocused" HorizontalOptions="End" Margin="0,5,20,0" WidthRequest="200" VerticalOptions="Center" BackgroundColor="Green" HeightRequest="45" Text="Пополнить"/>
+
+                    </Grid>
+                   
+                </StackLayout>
+
+                <Button Command="{x:Binding LogoutCommand}" Focused="Button_Focused" Unfocused="Button_Unfocused" HeightRequest="35"  BackgroundColor="#CE2B38" WidthRequest="100" HorizontalOptions="End" Margin="0,0,20,90" Text="Выйти"/>
+            </Grid>
+
+            <Grid Margin="20,40,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{x:Binding TariffsComamnd}" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="#CE2B38" Margin="5,0,0,0" Grid.Column="0" HeightRequest="45" Text="Тарифы"/>
+
+                <Button Command="{x:Binding ChangePasswordCommand}" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="#CE2B38" Margin="5,0,0,0" Grid.Column="1" HeightRequest="45" Text="Cменить пароль"/>
+                <Button Command="{x:Binding NewsCommand}" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="#CE2B38" Margin="5,0,0,0" Grid.Column="2" HeightRequest="45" Text="Новости"/>
+
+            </Grid>
+
+            <Label Margin="20,0,0,0" FontAttributes="Bold" FontSize="17" FontFamily="OpenSansSemibold" Text="Подключенные услуги"/>
+
+            <Grid>
+
+                <Grid Margin="20,15,20,0">
+                    <RoundRectangle CornerRadius="10" Fill="#F43645"/>
+
+                    <StackLayout Margin="15, 10, 15,15">
+                        <Label FontAttributes="Bold" FontSize="16" TextColor="White" Text="Посуточный 100 mb. РЕАКТИВНЫЙ 850 руб."/>
+                        <HorizontalStackLayout Margin="0, 10,0,0">
+                            <Label TextColor="White" Text="Статус: "/>
+                            <Label Margin="5,0,0,0" TextColor="White" Text="Активен"/>
+                        </HorizontalStackLayout>
+                    </StackLayout>
+
+                    <Grid.Shadow>
+                        <Shadow Opacity="0.2" Radius="20"/>
+                    </Grid.Shadow>
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>
