@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DiDiOperator.SDK.Services;
 
 namespace DiDiOperator.Client.ViewModels
 {
-    public class HistoryViewModel
+    public class HistoryViewModel: ViewModelBase
     {
+        private readonly DiDiService diDiService;
+
+        public HistoryViewModel(DiDiService di)
+        {
+            this.diDiService = di;
+        }
+
+        public async Task LoadData()
+        {
+            //var history = await diDiService.
+        }
     }
 }
