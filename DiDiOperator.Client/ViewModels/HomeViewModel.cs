@@ -23,6 +23,8 @@ namespace DiDiOperator.Client.ViewModels
 
         public ICommand NewsCommand { get; set; }
 
+        public ICommand RefreshCommand { get; set; }
+
         public string AbonentName { get; set; }
 
         public string ContractName { get; set; }
@@ -31,6 +33,8 @@ namespace DiDiOperator.Client.ViewModels
 
         public bool IsLoading { get; set; }
 
+        public bool IsError { get; set; }
+
         public ObservableCollection<CurrentTariff> CurrentTariffs { get; set; }
 
         public HomeViewModel(DiDiService diDiService, NavigationService navigationService)
@@ -38,57 +42,72 @@ namespace DiDiOperator.Client.ViewModels
             this.diDiService = diDiService;
             this.navigationService = navigationService;
             this.PayoutCommand = new AsyncRelayCommand(Payout);
-
             this.CurrentTariffs = new ObservableCollection<CurrentTariff>();
+            this.RefreshCommand = new AsyncRelayCommand(LoadData);
+
+            this.IsError = false;
         }
 
         public async Task LoadData()
         {
-            IsLoading = true;
-            RaisePropertyChanged("IsLoading");
-
-            var user = await this.diDiService.GetUserAsync();
-
-            ContractName = user.Title;
-            RaisePropertyChanged("ContractName");
-
-
-            var balance = await this.diDiService.GetBalanceAsync();
-
-            BalanceAmount = balance.CurrentBalance.ToString();
-            RaisePropertyChanged("BalanceAmount");
-
-            AbonentName = user.Comment;
-            RaisePropertyChanged("AbonentName");
-
-            var tariffs = await this.diDiService.GetCurrentTariffsAsync();
-
-            var status = await this.diDiService.GetStatusAsync();
-
-
-            foreach (var tariff in tariffs)
+            try
             {
-                var currentTariff = new CurrentTariff();
+                IsError = false;
+                RaisePropertyChanged("IsError");
 
-                currentTariff.Name = tariff.WebTitle;
+                IsLoading = true;
+                RaisePropertyChanged("IsLoading");
 
-                try
+                this.CurrentTariffs.Clear();
+
+                var user = await this.diDiService.GetUserAsync();
+
+                ContractName = user.Title;
+                RaisePropertyChanged("ContractName");
+
+                var balance = await this.diDiService.GetBalanceAsync();
+
+                BalanceAmount = Math.Round(balance.CurrentBalance, 2).ToString();
+                RaisePropertyChanged("BalanceAmount");
+
+                AbonentName = user.Comment;
+                RaisePropertyChanged("AbonentName");
+
+                var tariffs = await this.diDiService.GetCurrentTariffsAsync();
+
+                var status = await this.diDiService.GetStatusAsync();
+
+                foreach (var tariff in tariffs)
                 {
-                    currentTariff.Status = "Активен";
-                    currentTariff.Price = tariff.ConfigPreferences.Map.Price;
-                    currentTariff.Speed = tariff.ConfigPreferences.Map.Speed;
+                    var currentTariff = new CurrentTariff();
 
+                    currentTariff.Name = tariff.WebTitle;
+
+                    try
+                    {
+                        currentTariff.Status = "Активен";
+                        currentTariff.Price = tariff.ConfigPreferences.Map.Price;
+                        currentTariff.Speed = tariff.ConfigPreferences.Map.Speed;
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    CurrentTariffs.Add(currentTariff);
                 }
-                catch(Exception ex)
-                {
 
-                }
+                IsLoading = false;
+                RaisePropertyChanged("IsLoading");
 
-                CurrentTariffs.Add(currentTariff);
+            }catch(Exception ex)
+            {
+                IsError = true;
+                RaisePropertyChanged("IsError");
+                IsLoading = false;
+                RaisePropertyChanged("IsLoading");
             }
-             
-            IsLoading = false;
-            RaisePropertyChanged("IsLoading");
         }
 
         private async Task Payout()

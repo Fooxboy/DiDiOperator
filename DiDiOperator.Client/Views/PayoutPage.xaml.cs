@@ -16,7 +16,7 @@ public partial class PayoutPage : ContentPage
     {
 		if (e.Url.Contains("di-di.ru"))
 		{
-			
-		}
+			WebViewMain.IsVisible = false;
+        }
     }
 }

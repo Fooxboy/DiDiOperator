@@ -6,73 +6,71 @@
             windows:Page.ToolbarDynamicOverflowEnabled="True"
              windows:Page.ToolbarPlacement="Bottom"
              Shell.NavBarHasShadow="False"
-             Background="#ECECEC"
+             Background="#F4F4F4"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Shell.NavBarIsVisible="False"
+             IconImageSource="home.png"
              Title="Главная">
 
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="#ECECEC" StatusBarStyle="DarkContent" />
     </ContentPage.Behaviors>
-    
+
     <Grid Margin="0, 20,0,0">
-        <ActivityIndicator Color="#CE2B38" HeightRequest="60" WidthRequest="60" IsRunning="{x:Binding IsLoading}" />
+        <ActivityIndicator Color="#CE2B38" HeightRequest="90" WidthRequest="90"  IsRunning="{x:Binding IsLoading}" />
 
         <StackLayout IsVisible="{x:Binding IsLoading, Converter={StaticResource InversionBoolConverter}}">
 
             <Grid>
-                <StackLayout Margin="10,10,0,0">
+                <StackLayout Margin="10,10,10,0">
                     <Grid>
-                        <Label FontSize="25" Margin="0,0,130,0" FontFamily="InterExtraBold" Text="{x:Binding AbonentName, Mode=TwoWay}"/>
-                        <Button CornerRadius="17" FontFamily="InterBold" Command="{x:Binding LogoutCommand}" Focused="Button_Focused" Unfocused="Button_Unfocused" HeightRequest="35"  BackgroundColor="#F43645" WidthRequest="100" HorizontalOptions="End" Margin="0,0,10,0" Text="выйти"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
+                        <Grid Grid.Column="0">
+                            <RoundRectangle CornerRadius="49" Fill="#EBEBEB" HeightRequest="80" WidthRequest="80"/>
+                            <Image HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="36" Source="person.png" />
+                        </Grid>
+
+                        <Label Grid.Column="1" FontSize="24" Margin="10,0,20,20" FontFamily="InterExtraBold" Text="{x:Binding AbonentName, Mode=TwoWay}"/>
+
+                        <HorizontalStackLayout VerticalOptions="End" Grid.Column="1" Margin="10, 25,0,0">
+                            <Label FontFamily="InterRegular" TextColor="#5C5C5C" Text="Номер договора: "/>
+                            <Label FontFamily="InterRegular" TextColor="#5C5C5C" Margin="5,0,0,0" Text="{x:Binding ContractName}"/>
+                        </HorizontalStackLayout>
                     </Grid>
 
-                    <HorizontalStackLayout Margin="0, 5,0,0">
-                        <Label FontFamily="InterRegular" TextColor="#5C5C5C" Text="Номер договора: "/>
-                        <Label FontFamily="InterRegular" TextColor="#5C5C5C" Margin="5,0,0,0" Text="{x:Binding ContractName}"/>
-                    </HorizontalStackLayout>
 
-                    <Grid Margin="0, 30, 10,0">
-                        <RoundRectangle CornerRadius="10" Fill="White">
-                            <RoundRectangle.Shadow>
-                                <Shadow Radius="15" Opacity="0.2"/>
-                            </RoundRectangle.Shadow>
-                        </RoundRectangle>
-
-                        <StackLayout>
-                            <Label Text="Текущий баланс" Margin="15,15,0,0" FontSize="18" FontFamily="InterBold"/>
-
-                            <HorizontalStackLayout Margin="15,10,0,10">
-                                <Label TextColor="#248B00" FontSize="42" FontFamily="InterExtraBold" FontAttributes="Bold" Text="{x:Binding BalanceAmount}"/>
-                                <Label TextColor="#248B00" FontFamily="InterRegular" FontSize="42" Margin="5,0,0,0" Text="₽"/>
-                            </HorizontalStackLayout>
-
-
-                        </StackLayout>
-
-                        <Button Command="{x:Binding PayoutCommand}" FontFamily="InterLight" Focused="Button_Focused" Unfocused="Button_Unfocused" HorizontalOptions="End"  WidthRequest="120" Margin="0,0,15,15" VerticalOptions="End" BackgroundColor="#309CFF" HeightRequest="40" Text="Пополнить"/>
-
-                    </Grid>
-                   
                 </StackLayout>
 
             </Grid>
 
-            <Grid Margin="5,40,10,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <Label Text="Текущий баланс" Margin="10,35,0,0" FontSize="18" FontFamily="InterBold"/>
 
-                <Button Command="{x:Binding TariffsComamnd}" FontFamily="InterRegular" TextColor="Black" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="White" Margin="5,0,0,0" Grid.Column="0" HeightRequest="45" Text="Тарифы"/>
-                <Button Command="{x:Binding ChangePasswordCommand}"  FontFamily="InterRegular" TextColor="Black" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="White" Margin="5,0,0,0" Grid.Column="1" HeightRequest="45" Text="Пароль"/>
-                <Button Command="{x:Binding NewsCommand}"  FontFamily="InterRegular" TextColor="Black" Focused="Button_Focused" Unfocused="Button_Unfocused" BackgroundColor="White" Margin="5,0,0,0" Grid.Column="2" HeightRequest="45" Text="Новости"/>
+            <Grid Margin="10,10,10,0" HeightRequest="80">
+                <RoundRectangle CornerRadius="15" Fill="White">
+                    <RoundRectangle.Shadow>
+                        <Shadow Radius="15" Opacity="0.2"/>
+                    </RoundRectangle.Shadow>
+                </RoundRectangle>
+
+                <StackLayout>
+
+                    <HorizontalStackLayout Margin="30, 20,0,0">
+                        <Label TextColor="#248B00" FontSize="34" FontFamily="InterExtraBold" FontAttributes="Bold" Text="{x:Binding BalanceAmount}"/>
+                        <Label TextColor="#248B00" FontFamily="InterExtraBold" FontSize="34" Margin="5,0,0,0" Text="₽"/>
+                    </HorizontalStackLayout>
+
+                </StackLayout>
+
+                <Button Command="{x:Binding PayoutCommand}" HorizontalOptions="End" Margin="0,0,24,0" FontFamily="InterLight" Focused="Button_Focused" Unfocused="Button_Unfocused"  WidthRequest="120" BackgroundColor="#309CFF" HeightRequest="40" Text="Пополнить"/>
 
             </Grid>
 
-            <Label Margin="10,0,0,0" FontAttributes="Bold" FontSize="20" FontFamily="InterExtraBold" Text="Подключенные услуги"/>
+            <Label Margin="10,25,0,0" FontSize="18" FontFamily="InterExtraBold" Text="Подключенные услуги"/>
 
             <Grid>
 
@@ -80,30 +78,41 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid MaximumHeightRequest="150" Margin="10,15,10,0">
-                                
-                                <RoundRectangle CornerRadius="10" Fill="White">
-                                     <RoundRectangle.Shadow>
-                                            <Shadow Radius="15" Opacity="0.2"/>
+                            <Grid MaximumHeightRequest="190" Margin="10,15,10,0">
+
+                                <RoundRectangle CornerRadius="15" Fill="White">
+                                    <RoundRectangle.Shadow>
+                                        <Shadow Radius="15" Opacity="0.2"/>
                                     </RoundRectangle.Shadow>
-                                    
+
                                 </RoundRectangle>
 
                                 <StackLayout Margin="15, 10, 15,15">
-                                    <Label FontFamily="InterMedium" FontSize="16" TextColor="Black" Text="{x:Binding Name}"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" Source="magic_out.png" />
+                                        <Label Grid.Column="1" Margin="5,5,0,0" FontFamily="InterSemiBold" FontSize="16" TextColor="Black" Text="{x:Binding Name}"/>
+                                    </Grid>
+
+                                    <HorizontalStackLayout Margin="0, 20,0,0">
+                                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" Source="vitals.png" />
+                                        <Label FontFamily="InterRegulaer" Margin="5, 5,0,0" TextColor="Black" Text="Статус: "/>
+                                        <Label Margin="5,5,0,0" FontFamily="InterBold" TextColor="#248B00" Text="{Binding Status}"/>
+                                    </HorizontalStackLayout>
+
                                     <HorizontalStackLayout Margin="0, 10,0,0">
-                                        <Label FontFamily="InterRegulaer" TextColor="Black" Text="Статус: "/>
-                                        <Label Margin="5,0,0,0" FontFamily="InterBold" TextColor="#248B00" Text="{Binding Status}"/>
+                                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" Source="speed.png" />
+                                        <Label FontFamily="InterRegulaer" Margin="5, 5,0,0" TextColor="Black" Text="Скорость: "/>
+                                        <Label Margin="5,5,0,0" FontFamily="InterBold" TextColor="Black" Text="{Binding Speed}"/>
                                     </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout Margin="0, 5,0,0">
-                                        <Label FontFamily="InterRegulaer"  TextColor="Black" Text="Скорость: "/>
-                                        <Label Margin="5,0,0,0" FontFamily="InterBold" TextColor="Black" Text="{Binding Speed}"/>
-                                    </HorizontalStackLayout>
-
-                                    <HorizontalStackLayout Margin="0, 5,0,0">
-                                        <Label FontFamily="InterRegulaer"  TextColor="Black" Text="Цена: "/>
-                                        <Label Margin="5,0,0,0"  FontFamily="InterBold" TextColor="Black" Text="{Binding Price}"/>
+                                    <HorizontalStackLayout Margin="0, 10,0,0">
+                                        <Image Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" Source="paid.png" />
+                                        <Label FontFamily="InterRegulaer" Margin="5, 5,0,0"  TextColor="Black" Text="Цена: "/>
+                                        <Label Margin="5,5,0,0"  FontFamily="InterBold" TextColor="Black" Text="{Binding Price}"/>
                                     </HorizontalStackLayout>
                                 </StackLayout>
 
@@ -114,5 +123,11 @@
 
             </Grid>
         </StackLayout>
+
+        <Grid IsVisible="{Binding IsError}">
+            <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Произошла ошибка при загрузке."/>
+            <Button HeightRequest="40" Command="{Binding RefreshCommand}" Text="Повторить" WidthRequest="300"/>
+        </Grid>
     </Grid>
+
 </ContentPage>

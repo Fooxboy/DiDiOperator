@@ -13,8 +13,8 @@ public partial class TabsPage : TabbedPage
         
 
 
-        this.Children.Add(new NavigationPage(homePage) { Title = "Главная"});
-        this.Children.Add(new NavigationPage(tariffsPage) { Title = "Тарифы"});
+        this.Children.Add(new NavigationPage(homePage) { Title = "Главная", IconImageSource = homePage.IconImageSource});
+        this.Children.Add(new NavigationPage(tariffsPage) { Title = "Тарифы", IconImageSource = tariffsPage.IconImageSource});
 
         navigationService.NavigateInTabEvent += NavigationService_NavigateInTabEvent;
 

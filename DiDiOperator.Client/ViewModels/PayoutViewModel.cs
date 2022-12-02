@@ -29,12 +29,20 @@ namespace DiDiOperator.Client.ViewModels
                 
                 var url = await diDiService.GetPaymentLinkAsync(new SDK.Models.Response.Module() { Id = 2, Name = "sberbank", Title = "sberbank" }, amount);
 
+
+#if ANDROID
+                Launcher.OpenAsync(url.Url);
+#endif
+
+#if WINDOWS
                 Url = url.Url;
                 this.RaisePropertyChanged(nameof(Url));
 
                 VisibleWebView = true;
 
                 this.RaisePropertyChanged(nameof(VisibleWebView));
+
+#endif
 
             }
         }

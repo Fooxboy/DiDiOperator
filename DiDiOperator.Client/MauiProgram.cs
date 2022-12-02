@@ -58,6 +58,9 @@ namespace DiDiOperator.Client
             builder.Services.AddTransient<TariffsViewModel>();
             builder.Services.AddTransient<PayoutPage>();
             builder.Services.AddTransient<PayoutViewModel>();
+            builder.Services.AddTransient<HistoryPage>();
+            builder.Services.AddTransient<HistoryViewModel>();
+
 
             builder.Services.AddSingleton<NavigationService>();
             builder.Services.AddHttpClient();

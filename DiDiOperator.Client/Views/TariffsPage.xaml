@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiDiOperator.Client.Views.TariffsPage"
-             Background="#ECECEC"
+             Background="#F4F4F4"
              Shell.NavBarIsVisible="False"
+             IconImageSource="explore.png"
              Title="Тарифы">
 
     <Grid>
@@ -16,18 +17,22 @@
             <CollectionView Margin="0,25,0,0" ItemsSource="{x:Binding Tariffs}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid HeightRequest="60" Margin="10">
-                            <RoundRectangle CornerRadius="10" Fill="White">
+                        <Grid MaximumHeightRequest="80" Margin="10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <RoundRectangle Grid.ColumnSpan="2" CornerRadius="10" Fill="White">
                                 <RoundRectangle.Shadow>
                                     <Shadow Radius="10" Opacity="0.2"/>
                                 </RoundRectangle.Shadow>
                             </RoundRectangle>
 
-                            <HorizontalStackLayout>
-                                <Label VerticalOptions="Center" Margin="15" FontFamily="InterMedium" Text="{Binding Title}"/>
-                            </HorizontalStackLayout>
+                            <Label Grid.Column="0" VerticalOptions="Center" Margin="15" FontFamily="InterMedium" Text="{Binding Title}"/>
 
-                            <Image HorizontalOptions="End" Margin="0,0,10,0" HeightRequest="26" Source="arrow.png" />
+                            <Image Grid.Column="1" HorizontalOptions="End" Margin="0,0,10,0" HeightRequest="26" Source="arrow.png" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
