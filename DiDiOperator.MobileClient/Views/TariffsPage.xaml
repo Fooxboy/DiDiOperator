@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiDiOperator.MobileClient.Views.TariffsPage"
+             Background="#F4F4F4"
+             Shell.NavBarIsVisible="False"
+             IconImageSource="explore.png"
+             Title="Тарифы">
+    <Grid>
+        <ActivityIndicator Color="#CE2B38" HeightRequest="60" WidthRequest="60" IsRunning="{x:Binding IsLoading}" />
+
+        <VerticalStackLayout IsVisible="{x:Binding IsLoading, Converter={StaticResource InversionBoolConverter}}">
+
+            <Label FontFamily="InterBold" FontSize="28" Margin="10,30,10,0" Text="Доступные тарифы"/>
+
+            <CollectionView Margin="0,25,0,0" ItemsSource="{x:Binding Tariffs}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MaximumHeightRequest="80" Margin="10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RoundRectangle Grid.ColumnSpan="2" CornerRadius="10" Fill="White">
+                                <RoundRectangle.Shadow>
+                                    <Shadow Radius="10" Opacity="0.2"/>
+                                </RoundRectangle.Shadow>
+                            </RoundRectangle>
+
+                            <Label Grid.Column="0" VerticalOptions="Center" Margin="15" FontFamily="InterMedium" Text="{Binding Title}"/>
+
+                            <Image Grid.Column="1" HorizontalOptions="End" Margin="0,0,10,0" HeightRequest="26" Source="arrow.png" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

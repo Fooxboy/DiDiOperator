@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiDiOperator.SDK", "DiDiOperator.SDK\DiDiOperator.SDK.csproj", "{BAE272EB-0939-4C45-A9D5-827526B87385}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiDiOperator.SDK", "DiDiOperator.SDK\DiDiOperator.SDK.csproj", "{BAE272EB-0939-4C45-A9D5-827526B87385}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiDiOperator.Client", "DiDiOperator.Client\DiDiOperator.Client.csproj", "{111973FD-9DCE-460C-9668-3BFE223D3929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiDiOperator.Client", "DiDiOperator.Client\DiDiOperator.Client.csproj", "{111973FD-9DCE-460C-9668-3BFE223D3929}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiDiOperator.MobileClient", "DiDiOperator.MobileClient\DiDiOperator.MobileClient.csproj", "{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,12 @@ Global
 		{111973FD-9DCE-460C-9668-3BFE223D3929}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{111973FD-9DCE-460C-9668-3BFE223D3929}.Release|Any CPU.Build.0 = Release|Any CPU
 		{111973FD-9DCE-460C-9668-3BFE223D3929}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9F4EFC0-77C1-4961-A1C5-DE1E252C20BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

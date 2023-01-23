@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiDiOperator.Client.Controls
+namespace DiDiOperator.MobileClient.Controls
 {
     public partial class CustomButtonHandler
     {

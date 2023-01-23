@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiDiOperator.MobileClient.Views.TabsPage"
+             BarBackgroundColor="#F4F4F4"
+             Shell.NavBarIsVisible="False"
+             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:windows="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;assembly=Microsoft.Maui.Controls"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             windows:TabbedPage.HeaderIconsEnabled="False"
+             SelectedTabColor="Black"
+             BarTextColor="Black"
+             UnselectedTabColor="Gray"
+             Title="TabsPage">
+  
+</TabbedPage>

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DiDiOperator.SDK.Exceptions
 {
+    /// <summary>
+    /// Ошибка - неверных логин или пароль.
+    /// </summary>
     public class LoginErrorException : Exception
     {
-        public LoginErrorException(string message) : base(message)
-        {
-
-        }
+        public LoginErrorException(string message) : base(message) { }
     }
 }

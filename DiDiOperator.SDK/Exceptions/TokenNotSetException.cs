@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DiDiOperator.SDK.Exceptions
 {
-    public class TokenNotSetException : Exception
-    {
-        
-    }
+    /// <summary>
+    /// Ошибка - токен не был установлен в DiDiService
+    /// </summary>
+    public class TokenNotSetException : Exception { }
 }
